@@ -1,10 +1,12 @@
 public class Processando implements State {
     
     private QuiosqueContext context;
+    private MiniCurso cursoSelecionado;
+    private CreditCard card;
 
     public Processando(){
-        System.out.println("entrou no estado de Processando");
-        System.out.println("");
+        System.out.println("entrou no estado de Processando.");
+        this.cursoSelecionado = this.context.getMiniCursoSelecionado();
     }
 
     @Override
@@ -15,6 +17,12 @@ public class Processando implements State {
     @Override
     public void changeState() {
         this.context.setState(new Inscrito());
+    }
+
+    @Override
+    public void executeStateActions() {
+        System.out.println("Insira um cartão de crédito válido.");
+        CreditCard cartão = new CreditCard();
     }
     
 }
