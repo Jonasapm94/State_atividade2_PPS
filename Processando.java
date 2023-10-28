@@ -1,15 +1,20 @@
 public class Processando implements State {
+    
+    private QuiosqueContext context;
+
+    public Processando(){
+        System.out.println("entrou no estado de Processando");
+        System.out.println("");
+    }
 
     @Override
     public void setContext(QuiosqueContext context) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setContext'");
+        this.context = context;
     }
 
     @Override
     public void changeState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'changeState'");
+        this.context.setState(new Inscrito());
     }
     
 }

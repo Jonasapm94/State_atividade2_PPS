@@ -4,4 +4,8 @@ public class Aluno {
     public Aluno(String matricula){
         this.matricula = matricula;
     }
+
+    public String getMatricula(){
+        return matricula;
+    }
 }
