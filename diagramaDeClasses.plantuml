@@ -1,0 +1,106 @@
+@startuml
+interface State{
+    + setContext(QuiosqueContext context): void
+    + changeState(State state): void
+    + executeStateActions(): void
+}
+
+class EmEspera{
+    - context: QuiosqueContext
+    - getAlunoByMatricula(): Aluno
+    - _executeStateActions(): void
+}
+
+class Finalizado{
+    - context: QuiosqueContext
+    - _executeStateActions(): void
+}
+
+class Identificado{
+    - context: QuiosqueContext
+    - _executeStateActions(): void
+}
+
+class Inscrito{
+    - context: QuiosqueContext
+    - _executeStateActions(): void
+    - imprimitCartao(): void
+}
+
+class Processando{
+    - context: QuiosqueContext
+    - _executeStateActions(): void
+}
+
+class AlunoRepository{
+    - alunos: List<Aluno>
+    + add(): void
+    + getAlunos(): List<Aluno>
+    + getAlunoByMatricula(String Matricula): Aluno
+}
+
+class MiniCursoRepository{
+    - miniCursos: List<MiniCurso>
+    + getMiniCursoByName(String name): MiniCurso
+    + getMiniCursoByIndex(int i): MiniCurso
+}
+
+class Aluno {
+    - matricula: String
+    - nome: String
+}
+
+class CreditCard{
+    - number: String
+    - titular: String
+    - cvv: String
+    - isValid: boolean
+    - limit: float
+    + buySomethingReturnBool(float value): boolean
+}
+
+class MiniCurso{
+    - nome: String
+    - preco: float
+    - vagas: int
+    - matriculados: List<Aluno>
+    + matricularAluno(Aluno aluno): void
+    + retirarMatricula(Aluno aluno): void
+}
+
+class Main{}
+
+class QuiosqueContext{
+    - state: State
+    - aluno: Aluno
+    - matricula: String
+    - card: CreditCard
+    - miniCursoSelecionado: MiniCurso
+    - retirouTicket: boolean
+    - miniCursoRepository: MiniCursoRepository
+    - alunoRepository: AlunoRepository
+    + start(): void
+    + hasAluno(): boolean
+    + cleanContext(): void
+}
+
+
+EmEspera ..|> State
+Finalizado ..|> State
+Identificado ..|> State
+Inscrito ..|> State
+Processando ..|> State
+QuiosqueContext o--> State
+QuiosqueContext --> AlunoRepository
+QuiosqueContext --> MiniCursoRepository
+QuiosqueContext --> CreditCard
+AlunoRepository o-- Aluno
+MiniCursoRepository o-- MiniCurso
+Aluno --o MiniCurso
+QuiosqueContext <-- Main
+
+
+
+
+
+@enduml

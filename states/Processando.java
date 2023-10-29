@@ -1,12 +1,10 @@
 package states;
 
 import main.QuiosqueContext;
-import models.MiniCurso;
 
 public class Processando implements State {
     
     private QuiosqueContext context;
-    private MiniCurso cursoSelecionado;
 
     public Processando(){
         System.out.println("\nentrou no estado de Processando.");
@@ -34,11 +32,10 @@ public class Processando implements State {
         _executeStateActions();
     }
 
-    public void _executeStateActions() {
-        this.cursoSelecionado = this.context.getMiniCursoSelecionado();
+    private void _executeStateActions() {
         System.out.println("Insira um cartão de crédito válido.");
         if (this.context.getCreditCard().isValid()){
-            if (this.context.getCreditCard().buySomethingReturnBool(cursoSelecionado.getPreco())){
+            if (this.context.getCreditCard().buySomethingReturnBool(this.context.getMiniCursoSelecionado().getPreco())){
                 System.out.println("Compra realizada!");
                 changeState(new Inscrito());
             } else {

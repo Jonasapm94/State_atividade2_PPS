@@ -44,7 +44,7 @@ public class Inscrito implements State {
         this.context.setState(state);
     }
 
-    public void imprimirCartão(){
+    private void imprimirCartão(){
         
         System.out.println(MessageFormat.format("""
         
