@@ -8,10 +8,10 @@ import models.MiniCurso;
 public class MiniCursoRepository {
     private List<MiniCurso> miniCursos = new ArrayList<MiniCurso>();
 
-    private MiniCurso chatGpt = new MiniCurso("ChatGPT em Detalhes", 100.00, 10);
-    private MiniCurso blockChain = new MiniCurso("Blockchain", 90.00, 10);
-    private MiniCurso iot = new MiniCurso("IoT", 80.00, 10);
-    private MiniCurso realidadeVirtual = new MiniCurso("Realidade Virtual", 70.00, 10);
+    private MiniCurso chatGpt = new MiniCurso("ChatGPT em Detalhes", 100.00f, 10);
+    private MiniCurso blockChain = new MiniCurso("Blockchain", 90.00f, 10);
+    private MiniCurso iot = new MiniCurso("IoT", 80.00f, 10);
+    private MiniCurso realidadeVirtual = new MiniCurso("Realidade Virtual", 70.00f, 10);
    
     public MiniCursoRepository(){
         miniCursos.add(chatGpt);

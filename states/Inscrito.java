@@ -10,6 +10,7 @@ public class Inscrito implements State {
 
     Inscrito(){
         System.out.println("\nentrou no estado de Inscrito.");
+        System.out.println("\n...Imprimindo cartão...\n");
     }
 
     @Override
@@ -35,8 +36,6 @@ public class Inscrito implements State {
         System.out.println("\nRetire seu ingresso impresso pelo quiosque.");
         if (this.context.retirouTicket()){
             changeState(new Finalizado());
-        } else {
-            System.out.println("\nRetire seu ingresso impresso pelo quiosque.");
         }
     }
 
@@ -46,6 +45,7 @@ public class Inscrito implements State {
     }
 
     public void imprimirCartão(){
+        
         System.out.println(MessageFormat.format("""
         
         --------------------------------        
@@ -54,7 +54,7 @@ public class Inscrito implements State {
         INGRESSO PARA MINI-CURSOS IFTECH
         Mini-curso {0} 
         Aluno: {1} 
-        Valor: {2}
+        Valor: R$ {2}
         --------------------------------        
         ********************************
         --------------------------------

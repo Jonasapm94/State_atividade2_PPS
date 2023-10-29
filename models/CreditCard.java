@@ -5,9 +5,9 @@ public class CreditCard {
     private String titular;
     private String cvv;
     private boolean isValid;
-    private double limit;
+    private float limit;
 
-    public CreditCard(String number, String titular, String cvv, double limit){
+    public CreditCard(String number, String titular, String cvv, float limit){
         if (cvv.length() ==3 && number.length() == 8 && limit > 0){
             this.number = number;
             this.cvv = cvv;
@@ -22,8 +22,8 @@ public class CreditCard {
         return isValid;
     }
 
-    public boolean buySomethingReturnBool(double value){
-        if ((this.limit - value) > 0){
+    public boolean buySomethingReturnBool(float value){
+        if ((this.limit - value) >= 0){
             this.limit -= value;
             return true;
         }

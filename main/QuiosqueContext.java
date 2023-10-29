@@ -5,6 +5,7 @@ import models.CreditCard;
 import models.MiniCurso;
 import repositories.AlunoRepository;
 import repositories.MiniCursoRepository;
+import states.EmEspera;
 import states.State;
 
 public class QuiosqueContext{
@@ -20,7 +21,24 @@ public class QuiosqueContext{
     private AlunoRepository alunoRepository = new AlunoRepository();
 
     public QuiosqueContext(State initialState){
+        System.out.println("""
+    
+        ------------------------------------------
+        QUIOSQUE DE VENDAS DE MINICURSOS DO IFTECH
+        ------------------------------------------
+                """);
         this.state = initialState;
+        state.setContext(this);
+    }
+    
+    public QuiosqueContext(){
+        System.out.println("""
+    
+        ------------------------------------------
+        QUIOSQUE DE VENDAS DE MINICURSOS DO IFTECH
+        ------------------------------------------
+                """);
+        this.state = new EmEspera();
         state.setContext(this);
     }
 
@@ -77,7 +95,7 @@ public class QuiosqueContext{
         //para um cartão ser válido, é necessário que o número tenho 8 dígitos, o cvv 3 e o limite seja maior que zero
         
         //neste momento retornando um valor mock
-        CreditCard mockCard = new CreditCard("12345678", "Jonas A", "111", 300);
+        CreditCard mockCard = new CreditCard("12345678", "Jonas A", "111", 90.0f);
         this.card = mockCard;
        
         return this.card;

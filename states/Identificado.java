@@ -9,8 +9,8 @@ public class Identificado implements State {
 
     
     public Identificado(){
-        System.out.println("\nMatrícula válida. Aluno identificado");
         System.out.println("Entrou no estado de Identificado");
+        System.out.println("\nMatrícula válida. Aluno identificado");
     }
 
     @Override
@@ -36,9 +36,9 @@ public class Identificado implements State {
     }
 
     private void _executeStateActions() {
-        System.out.println("");
+        System.out.println("\nBem vindo, " + this.context.getAluno().getNome() + "!\n");
         System.out.println(this.context.getMiniCursoRepository().toString());
-        int i = 0;
+        int i = 1;
         MiniCurso curso = this.context.getMiniCursoRepository().getMiniCursoByIndex(i);
         if (curso != null){
             System.out.println("Usuário escolheu curso "+ curso.getNome());

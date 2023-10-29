@@ -5,7 +5,7 @@ import java.util.List;
 public class MiniCurso {
 
     private String nome;
-    private double preco;
+    private float preco;
     private int vagas;
     private List<Aluno> matriculados = new ArrayList<Aluno>();
 
@@ -13,7 +13,7 @@ public class MiniCurso {
         return this.nome;
     }
 
-    public double getPreco(){
+    public float getPreco(){
         return this.preco;
     }
 
@@ -25,9 +25,9 @@ public class MiniCurso {
         return this.matriculados;
     }
 
-    public MiniCurso(String nome, double d, int vagas){
+    public MiniCurso(String nome, float preco, int vagas){
         this.nome = nome;
-        this.preco = d;
+        this.preco = preco;
         this.vagas = vagas;
     }
 

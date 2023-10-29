@@ -45,8 +45,9 @@ public class EmEspera implements State {
     }
 
     public void _executeStateActions() {
-        
+        System.out.println("Digite sua matrícula");
         String matricula = this.context.getMatricula();
+        System.out.println("Matrícula informada: " + matricula);
         setAluno(getAlunoByMatricula(matricula));
         if (context.hasAluno()){
             changeState(new Identificado());
