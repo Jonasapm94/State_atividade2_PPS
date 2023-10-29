@@ -1,8 +1,5 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import models.Aluno;
 import models.CreditCard;
 import models.MiniCurso;
