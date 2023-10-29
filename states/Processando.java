@@ -1,12 +1,15 @@
+package states;
+
+import main.QuiosqueContext;
+import models.MiniCurso;
+
 public class Processando implements State {
     
     private QuiosqueContext context;
     private MiniCurso cursoSelecionado;
-    private CreditCard card;
 
     public Processando(){
-        System.out.println("entrou no estado de Processando.");
-        
+        System.out.println("\nentrou no estado de Processando.");
     }
 
     @Override
@@ -15,8 +18,8 @@ public class Processando implements State {
     }
 
     @Override
-    public void changeState() {
-        this.context.setState(new Inscrito());
+    public void changeState(State state) {
+        this.context.setState(state);
     }
 
     @Override
@@ -34,16 +37,19 @@ public class Processando implements State {
     public void _executeStateActions() {
         this.cursoSelecionado = this.context.getMiniCursoSelecionado();
         System.out.println("Insira um cartão de crédito válido.");
-        this.card = new CreditCard("12345678", "Jonas A", "111", 300);
-        if (this.card.isValid()){
-            if (this.card.buySomethingReturnBool(cursoSelecionado.getPreco())){
+        if (this.context.getCreditCard().isValid()){
+            if (this.context.getCreditCard().buySomethingReturnBool(cursoSelecionado.getPreco())){
                 System.out.println("Compra realizada!");
-                changeState();
+                changeState(new Inscrito());
             } else {
                 System.out.println("Cartão informado não possui limite para compra.");
+                this.context.cleanContext();
+                changeState(new EmEspera());
             }
         } else {
-            System.out.println("Cartão inválido. Insira outro cartão.");
+            System.out.println("Cartão inválido. Não autorizado.");
+            this.context.cleanContext();
+            changeState(new EmEspera());
         }
 
     }

@@ -1,18 +1,20 @@
+package repositories;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import models.Aluno;
+
 public class AlunoRepository {
     private List<Aluno> alunos;
     //mock
-    private Aluno alunoTeste1 = new Aluno("20202370008");
-    private Aluno alunoTeste2 = new Aluno("20202370010");
+    private Aluno alunoTeste1 = new Aluno("20202370008", "Jonas Ariel");
+    private Aluno alunoTeste2 = new Aluno("20202370010", "Ândrei Medeiros");
 
-    AlunoRepository(){
+    public AlunoRepository(){
         alunos = new ArrayList<Aluno>();
         alunos.add(alunoTeste1);
         alunos.add(alunoTeste2);
-        System.out.println(alunos.toString());
     }
 
     public void add(Aluno aluno){

@@ -1,10 +1,9 @@
-public class Inscrito implements State {
+package states;
+import main.QuiosqueContext;
+
+public class Finalizado implements State {
 
     private QuiosqueContext context;
-
-    Inscrito(){
-        System.out.println("entrou no estado de Inscrito.");
-    }
 
     @Override
     public void setContext(QuiosqueContext context) {
@@ -12,9 +11,8 @@ public class Inscrito implements State {
     }
 
     @Override
-    public void changeState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'changeState'");
+    public void changeState(State state) {
+        this.context.setState(state);
     }
 
     @Override
@@ -29,8 +27,17 @@ public class Inscrito implements State {
         _executeStateActions();
     }
 
-    public void _executeStateActions(){
-        
+    private void _executeStateActions() {
+        System.out.println("""
+                
+        -----------------
+        COMPRA FINALIZADA
+        -----------------
+                """);
+        this.context.cleanContext();
+        changeState(new EmEspera());
     }
+
+
     
 }

@@ -1,5 +1,14 @@
+package main;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import models.Aluno;
+import models.CreditCard;
+import models.MiniCurso;
+import repositories.AlunoRepository;
+import repositories.MiniCursoRepository;
+import states.State;
 
 public class QuiosqueContext{
     private State state;
@@ -7,6 +16,7 @@ public class QuiosqueContext{
     private String matricula;
     private CreditCard card;
     private MiniCurso miniCursoSelecionado;
+    private boolean retirouTicket = false;
     private MiniCursoRepository miniCursoRepository = new MiniCursoRepository();
 
     // repositório de alunos
@@ -21,13 +31,13 @@ public class QuiosqueContext{
         return this.state;
     }
 
-    public void changeState(){
-        this.state.changeState();
-    }
-
     public void setState(State state){
         state.setContext(this);
         this.state = state;
+    }
+
+    public Aluno getAluno(){
+        return this.aluno;
     }
 
     public void setAluno(Aluno aluno){
@@ -57,8 +67,32 @@ public class QuiosqueContext{
 
     public String getMatricula() {
         //método para pegar a matrícula que o usuário inserir no painel.
+        
+        //neste momento retornando um valor mock (valores de matrícula que autorizam 
+        //passagem para próximo estado são: "20202370008" e "20202370010")
+        this.matricula = "20202370008";
+        
+        return this.matricula;
+    }
+
+    public CreditCard getCreditCard(){
+        //método para pegar o cartão que o usuário inserir no quiosque.
+        //para um cartão ser válido, é necessário que o número tenho 8 dígitos, o cvv 3 e o limite seja maior que zero
+        
         //neste momento retornando um valor mock
-        return "20202370008";
+        CreditCard mockCard = new CreditCard("12345678", "Jonas A", "111", 300);
+        this.card = mockCard;
+       
+        return this.card;
+    }
+
+    public boolean retirouTicket(){
+        //método que retorna se o usuário retirou o ticket impresso do quiosque. 
+        
+        //neste momento retornando um valor mock   
+        this.retirouTicket = true;
+
+        return this.retirouTicket;
     }
 
     public boolean hasAluno() {
@@ -83,7 +117,4 @@ public class QuiosqueContext{
         return this.miniCursoSelecionado;
     }
 
-    public void finalizarCompra(){
-        System.out.println(this.miniCursoSelecionado.getVagas());
-    }
 }

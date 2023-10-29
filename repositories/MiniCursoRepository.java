@@ -1,7 +1,10 @@
+package repositories;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import models.MiniCurso;
 
 public class MiniCursoRepository {
     private List<MiniCurso> miniCursos = new ArrayList<MiniCurso>();
@@ -11,7 +14,7 @@ public class MiniCursoRepository {
     private MiniCurso iot = new MiniCurso("IoT", 80.00, 10);
     private MiniCurso realidadeVirtual = new MiniCurso("Realidade Virtual", 70.00, 10);
    
-    MiniCursoRepository(){
+    public MiniCursoRepository(){
         miniCursos.add(chatGpt);
         miniCursos.add(blockChain);
         miniCursos.add(iot);

@@ -7,7 +7,7 @@ public class EmEspera implements State {
     }
 
     public EmEspera(){
-        System.out.println("Entrou no estado de Em Espera");
+        System.out.println("\nEntrou no estado de Em Espera");
     }
 
     @Override
@@ -16,8 +16,8 @@ public class EmEspera implements State {
     }
 
     @Override
-    public void changeState() {
-        this.context.setState(new Identificado());
+    public void changeState(State state) {
+        this.context.setState(state);
     }
 
     public Aluno getAlunoByMatricula(String matricula) {
@@ -45,7 +45,7 @@ public class EmEspera implements State {
         String matricula = this.context.getMatricula();
         setAluno(getAlunoByMatricula(matricula));
         if (context.hasAluno()){
-            changeState();
+            changeState(new Identificado());
         } else {
             System.out.println("Aluno de matrícula " + matricula + " não encontrado no repositório. Acesso negado.");
         }

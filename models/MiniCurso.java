@@ -1,3 +1,4 @@
+package models;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,11 @@ public class MiniCurso {
         return this.vagas;
     }
 
-    MiniCurso(String nome, double d, int vagas){
+    public List<Aluno> getMatriculados(){
+        return this.matriculados;
+    }
+
+    public MiniCurso(String nome, double d, int vagas){
         this.nome = nome;
         this.preco = d;
         this.vagas = vagas;

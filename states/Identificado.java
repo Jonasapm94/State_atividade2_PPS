@@ -1,10 +1,15 @@
+package states;
+
+import main.QuiosqueContext;
+import models.MiniCurso;
+
 public class Identificado implements State {
 
     private QuiosqueContext context;
 
     
     public Identificado(){
-        System.out.println("Matrícula válida. Aluno identificado");
+        System.out.println("\nMatrícula válida. Aluno identificado");
         System.out.println("Entrou no estado de Identificado");
     }
 
@@ -14,8 +19,8 @@ public class Identificado implements State {
     }
 
     @Override
-    public void changeState() {
-        this.context.setState(new Processando());
+    public void changeState(State state) {
+        this.context.setState(state);
     }
 
     @Override
@@ -31,13 +36,15 @@ public class Identificado implements State {
     }
 
     private void _executeStateActions() {
+        System.out.println("");
         System.out.println(this.context.getMiniCursoRepository().toString());
         int i = 0;
         MiniCurso curso = this.context.getMiniCursoRepository().getMiniCursoByIndex(i);
         if (curso != null){
             System.out.println("Usuário escolheu curso "+ curso.getNome());
+            curso.matricularAluno(this.context.getAluno());
             this.context.setMiniCursoSelecionado(curso);
-            changeState();
+            changeState(new Processando());
         } else {
             System.out.println("Curso inexistente. Tente novamente.");
         }

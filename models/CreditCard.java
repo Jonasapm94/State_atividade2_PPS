@@ -1,3 +1,4 @@
+package models;
 
 public class CreditCard {
     private String number;
@@ -6,7 +7,7 @@ public class CreditCard {
     private boolean isValid;
     private double limit;
 
-    CreditCard(String number, String titular, String cvv, double limit){
+    public CreditCard(String number, String titular, String cvv, double limit){
         if (cvv.length() ==3 && number.length() == 8 && limit > 0){
             this.number = number;
             this.cvv = cvv;
