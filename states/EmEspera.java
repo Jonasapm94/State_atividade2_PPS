@@ -1,3 +1,7 @@
+package states;
+import main.QuiosqueContext;
+import models.Aluno;
+
 public class EmEspera implements State {
 
     private QuiosqueContext context;
