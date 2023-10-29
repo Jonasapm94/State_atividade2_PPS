@@ -6,7 +6,7 @@ public class Processando implements State {
 
     public Processando(){
         System.out.println("entrou no estado de Processando.");
-        this.cursoSelecionado = this.context.getMiniCursoSelecionado();
+        
     }
 
     @Override
@@ -21,8 +21,31 @@ public class Processando implements State {
 
     @Override
     public void executeStateActions() {
+        //método criado para melhorar a visualização do console e simular pausas no processamento do quiosque.
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        _executeStateActions();
+    }
+
+    public void _executeStateActions() {
+        this.cursoSelecionado = this.context.getMiniCursoSelecionado();
         System.out.println("Insira um cartão de crédito válido.");
-        CreditCard cartão = new CreditCard();
+        this.card = new CreditCard("12345678", "Jonas A", "111", 300);
+        if (this.card.isValid()){
+            if (this.card.buySomethingReturnBool(cursoSelecionado.getPreco())){
+                System.out.println("Compra realizada!");
+                changeState();
+            } else {
+                System.out.println("Cartão informado não possui limite para compra.");
+            }
+        } else {
+            System.out.println("Cartão inválido. Insira outro cartão.");
+        }
+
     }
     
 }

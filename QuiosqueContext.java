@@ -82,4 +82,8 @@ public class QuiosqueContext{
     public MiniCurso getMiniCursoSelecionado(){
         return this.miniCursoSelecionado;
     }
+
+    public void finalizarCompra(){
+        System.out.println(this.miniCursoSelecionado.getVagas());
+    }
 }
